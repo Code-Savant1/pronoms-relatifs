@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercice 3: Qui ou Que</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f4f4f4; /* Light gray background */
+            color: #333; /* Dark gray for general text, avoiding light gray */
+        }
+        /* --- Header Styling --- */
+        header {
+            background-color: #4CAF50; /* Green header */
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+            margin-bottom: 30px;
+            border-radius: 8px; /* Rounded corners */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+            width: 100%;
+            max-width: 800px; /* Max width for consistency */
+        }
+
+        header h2 {
+            margin: 0;
+            font-size: 2.5em;
+        }
+
+        header p {
+            font-size: 1.1em;
+        }
+        .question-container {
+            background-color: #fff; /* White background for question blocks */
+            padding: 20px;
+            margin-bottom: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .question-prompt {
+            font-size: 1.1em;
+            margin-bottom: 10px;
+            color: #333; /* Dark gray text for question prompts */
+        }
+        .question-prompt span {
+            font-weight: bold;
+            color: #007bff; /* Blue for the example sentences to make them stand out */
+        }
+        .user-input {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #ddd; /* Light gray border */
+            border-radius: 4px;
+            box-sizing: border-box; /* Include padding in width */
+            font-size: 1em;
+            color: #555; /* Medium gray for input text */
+        }
+        .submit-button {
+            background-color: #28a745; /* Green background for submit button */
+            color: white; /* White text on submit button */
+            border: none;
+            padding: 12px 25px;
+            margin-top: 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 18px;
+            display: block; /* Takes full width of parent */
+            margin-left: auto;
+            margin-right: auto; /* Center the button */
+        }
+        .submit-button:hover {
+            background-color: #218838; /* Darker green on hover */
+        }
+        .result {
+            margin-top: 10px;
+            font-weight: bold;
+        }
+        .pass {
+            color: green; /* Green text for "Pass" */
+        }
+        .fail {
+            color: red; /* Red text for "Fail" */
+        }
+        .check-answer-button {
+            background-color: #17a2b8; /* Cyan/teal background for check answer button */
+            color: white; /* White text on check answer button */
+            border: none;
+            padding: 8px 12px;
+            margin-top: 5px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            display: none; /* Hidden by default */
+        }
+        .check-answer-button:hover {
+            background-color: #138496; /* Darker cyan/teal on hover */
+        }
+        .correct-answer-display {
+            margin-top: 5px;
+            font-style: italic;
+            color: #555; /* Dark gray text for correct answer display */
+        }
+        #exercices {
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+            padding: 25px;
+            border-left: 5px solid #007bff; /* Blue accent for exercise links */
+            margin-top: 30px;
+        }
+
+        #exercices a {
+            display: block; /* Make links stack nicely */
+            background-color: #007bff; /* Blue button style */
+            color: white;
+            padding: 10px 20px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease;
+        }
+
+        #exercices a:hover {
+            background-color: #0056b3;
+        }
+        
+        #exemple {
+       background-color: #95ccff;
+          padding: 20px;
+          border-left: 5px, solid, #4CAF50;
+          border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+<header>
+    <h2>Exercice 3: </h2>
+    <p>Joignez les deux phrases avec "qui" ou "que" </p>
+    </header>
+    
+    
+    <div id="exemple"><p> <b>Exemple :</b></p>
+    <p>C'est le docteur. </p>
+    <p>Il soigne ma mère </p>
+    <p id="réponseExemple"><b><i>C'est le docteur qui soigne ma mère. </i></b></p></div>
+    
+
+    <div id="exercise-container">
+        </div>
+
+    <button class="submit-button" onclick="submitAll()">Soumettre toutes les réponses</button>
+     
+   
+   </div>
+   
+      <section>
+        <h2>Navigation</h2>
+        <div id="exercices">
+          <a href="index.html">Index</a>
+            <a href="exercice 1.html">Exercice 1</a>
+            <a href="exercice 2.html">Exercice 2</a>
+            <a href="exercice 3.html">Ici</a>
+            <a href="exercice 4.html">Exercice 4</a>
+        </div>
+    </section>
+
+    <script>
+        const questions = [
+            {
+                sentence1: "Voici le livre.",
+                sentence2: "Il est sur la table.",
+                correct: "Voici le livre qui est sur la table."
+            },
+            {
+                sentence1: "C'est la personne.",
+                sentence2: "J'ai rencontré cette personne hier.",
+                correct: "C'est la personne que j'ai rencontrée hier."
+            },
+            {
+                sentence1: "L'étudiant a réussi l'examen.",
+                sentence2: "L'étudiant est content.",
+                correct: "L'étudiant qui a réussi l'examen est content."
+            },
+            {
+                sentence1: "J'aime ce film.",
+                sentence2: "Tu as recommandé ce film.",
+                correct: "J'aime le film que tu as recommandé."
+            },
+            {
+                sentence1: "Le chien aboie.",
+                sentence2: "Il ne mord pas.",
+                correct: "Le chien qui aboie ne mord pas."
+            },
+            {
+                sentence1: "Il a acheté la voiture.",
+                sentence2: "Je voulais cette voiture.",
+                correct: "Il a acheté la voiture que je voulais."
+            },
+            {
+                sentence1: "La femme parle français.",
+                sentence2: "Elle est ma professeure.",
+                correct: "La femme qui parle français est ma professeure."
+            },
+            {
+                sentence1: "Ce sont les chaussures.",
+                sentence2: "Tu portes ces chaussures.",
+                correct: "Ce sont les chaussures que tu portes."
+            },
+            {
+                sentence1: "L'oiseau chante.",
+                sentence2: "L'oiseau est magnifique.",
+                correct: "L'oiseau qui chante est magnifique."
+            },
+            {
+                sentence1: "Elle regarde la série.",
+                sentence2: "Tout le monde aime cette série.",
+                correct: "Elle regarde la série que tout le monde aime."
+            }
+        ];
+
+        function createQuestionElement(question, index) {
+            const container = document.createElement('div');
+            container.classList.add('question-container');
+            container.id = `question-${index}`;
+
+            const h3 = document.createElement('h3');
+            h3.textContent = ``;
+            container.appendChild(h3);
+
+            const promptP = document.createElement('p');
+            promptP.classList.add('question-prompt');
+            promptP.innerHTML = `<span>${question.sentence1}</span><br><span>${question.sentence2}</span>`;
+            container.appendChild(promptP);
+
+            const input = document.createElement('input');
+            input.type = 'text';
+            input.classList.add('user-input');
+            input.id = `answer-input-${index}`;
+            input.placeholder = "Écrivez votre phrase ici...";
+            container.appendChild(input);
+
+            const resultDiv = document.createElement('div');
+            resultDiv.classList.add('result');
+            resultDiv.id = `result-${index}`;
+            container.appendChild(resultDiv);
+
+            const checkAnswerBtn = document.createElement('button');
+            checkAnswerBtn.classList.add('check-answer-button');
+            checkAnswerBtn.id = `check-answer-btn-${index}`;
+            checkAnswerBtn.textContent = 'Vérifier la bonne réponse';
+            checkAnswerBtn.onclick = () => displayCorrectAnswer(index, question.correct);
+            container.appendChild(checkAnswerBtn);
+
+            const correctAnswerDisplay = document.createElement('div');
+            correctAnswerDisplay.classList.add('correct-answer-display');
+            correctAnswerDisplay.id = `correct-answer-display-${index}`;
+            container.appendChild(correctAnswerDisplay);
+
+            return container;
+        }
+
+        function loadQuestions() {
+            const exerciseContainer = document.getElementById('exercise-container');
+            questions.forEach((q, i) => {
+                exerciseContainer.appendChild(createQuestionElement(q, i));
+            });
+        }
+
+        function normalizeAnswer(answer) {
+            // Trim whitespace, convert to lowercase, remove extra spaces
+            return answer.trim().toLowerCase().replace(/\s+/g, ' ');
+        }
+
+        function submitAll() {
+            questions.forEach((question, index) => {
+                const userInput = document.getElementById(`answer-input-${index}`).value;
+                const resultDiv = document.getElementById(`result-${index}`);
+                const checkAnswerBtn = document.getElementById(`check-answer-btn-${index}`);
+                const correctAnswerDisplay = document.getElementById(`correct-answer-display-${index}`);
+
+                // Clear previous state
+                correctAnswerDisplay.textContent = '';
+                checkAnswerBtn.style.display = 'none';
+                resultDiv.classList.remove('pass', 'fail'); // Clear previous result classes
+
+                const normalizedUserAnswer = normalizeAnswer(userInput);
+                const normalizedCorrectAnswer = normalizeAnswer(question.correct);
+
+                if (normalizedUserAnswer === normalizedCorrectAnswer) {
+                    resultDiv.textContent = 'Résultat: Correct!';
+                    resultDiv.classList.add('pass');
+                } else {
+                    resultDiv.textContent = 'Résultat: Incorrect.';
+                    resultDiv.classList.add('fail');
+                    checkAnswerBtn.style.display = 'block'; // Show the check answer button
+                }
+            });
+        }
+
+        function displayCorrectAnswer(questionIndex, correctAnswer) {
+            const correctAnswerDisplay = document.getElementById(`correct-answer-display-${questionIndex}`);
+            correctAnswerDisplay.textContent = `Bonne réponse: ${correctAnswer}`;
+        }
+
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', loadQuestions);
+    </script>
+</body>
+</html>

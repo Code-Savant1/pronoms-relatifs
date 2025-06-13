@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercice : Les Pronoms Relatifs "Qui" et "Que"</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f4f4f4;
+            line-height: 1.6;
+            color: #333;
+        }
+        .exercise-container {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 900px;
+            margin: auto;
+        }
+        /* --- Header Styling --- */
+        header {
+            background-color: #4CAF50; /* Green header */
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+            margin-bottom: 30px;
+            border-radius: 8px; /* Rounded corners */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+            width: 100%;
+            max-width: 800px; /* Max width for consistency */
+        }
+
+        header h2 {
+            margin: 0;
+            font-size: 2.5em;
+        }
+
+        header p {
+            font-size: 1.1em;
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 25px;
+            font-size: 2em;
+        }
+        p {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 1.1em;
+            color: #555;
+        }
+        .sentence-item {
+            margin-bottom: 35px;
+            padding: 20px;
+            border: 1px solid #e0e0e0;
+            border-radius: 6px;
+            background-color: #fcfcfc;
+        }
+        .sentence-item label {
+            display: block;
+            margin-bottom: 12px;
+            font-weight: bold;
+            color: #444;
+            font-size: 1.2em;
+        }
+        audio {
+            width: 100%;
+            max-width: 400px;
+            margin-bottom: 15px;
+            display: block; /* Ensures it takes its own line */
+            margin-left: auto; /* Center the audio player */
+            margin-right: auto;
+        }
+        .word-bank {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 15px;
+            margin-bottom: 20px;
+            padding: 15px;
+            border: 1px dashed #c0c0c0;
+            border-radius: 5px;
+            min-height: 60px;
+            background-color: #f0f8ff; /* Light blue background for word bank */
+            align-items: flex-start; /* Align words to the top */
+        }
+        .word-bank .word {
+            background-color: #e0e0e0;
+            border: 1px solid #bbb;
+            padding: 10px 15px;
+            border-radius: 20px; /* Pill shape */
+            cursor: grab;
+            user-select: none;
+            font-size: 1.1em;
+            transition: background-color 0.2s ease, transform 0.1s ease;
+        }
+        .word-bank .word:hover {
+            background-color: #d0d0d0;
+            transform: translateY(-2px);
+        }
+        .sentence-input {
+            border: 1px solid #a0a0a0;
+            padding: 15px;
+            min-height: 60px;
+            border-radius: 5px;
+            background-color: #fff;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            box-shadow: inset 0 1px 3px rgba(0,0,0,0.1);
+            align-items: flex-start; /* Align words to the top */
+        }
+        .sentence-input .word {
+            background-color: #c3e6cb; /* Light green for words in the sentence */
+            border: 1px solid #8dbc9a;
+            padding: 10px 15px;
+            border-radius: 20px; /* Pill shape */
+            cursor: grabbing;
+            user-select: none;
+            font-size: 1.1em;
+            transition: background-color 0.2s ease;
+        }
+
+        .feedback {
+            margin-top: 15px;
+            font-weight: bold;
+            text-align: center;
+            padding: 8px;
+            border-radius: 4px;
+        }
+        .correct {
+            color: #28a745; /* Green */
+            background-color: #d4edda;
+            border: 1px solid #c3e6cb;
+        }
+        .incorrect {
+            color: #dc3545; /* Red */
+            background-color: #f8d7da;
+            border: 1px solid #f5c6cb;
+        }
+        .correction {
+            margin-top: 10px;
+            font-style: italic;
+            color: #666;
+            font-size: 0.95em;
+            text-align: left;
+            padding: 5px 10px;
+            background-color: #f0f0f0;
+            border-radius: 4px;
+            border-left: 3px solid #007bff;
+            display: none; /* Hidden by default */
+        }
+        .show-correction .correction {
+            display: block; /* Shown when 'show-correction' class is applied */
+        }
+        .check-answers-button {
+            display: block;
+            margin: 20px auto 0;
+            padding: 10px 20px;
+            background-color: #6c757d;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 1em;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            display: none; /* Hidden by default */
+        }
+        .check-answers-button:hover {
+            background-color: #5a6268;
+        }
+        button {
+            display: block;
+            margin: 30px auto 0;
+            padding: 14px 30px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 1.2em;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+        button:hover {
+            background-color: #0056b3;
+            transform: translateY(-2px);
+        }
+        .reset-button {
+            background-color: #28a745; /* Green for reset */
+        }
+        .reset-button:hover {
+            background-color: #218838;
+        }
+        .score {
+            text-align: center;
+            margin-top: 30px;
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #333;
+        }
+        .hidden {
+            display: none;
+        }
+        .exercise-container{
+       background-color: #95ccff;
+          padding: 20px;
+          border-left: 5px, solid, #4CAF50;
+          border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="exercise-container">
+        <h1>Exercice : Les Pronoms Relatifs "Qui" et "Que"</h1>
+        <p>Écoutez chaque phrase, puis reconstituez-la en cliquant et glissant les mots dans l'ordre correct. Faites attention aux pronoms relatifs !</p>
+        <p>Il y a des mots supplémentaires dans le réservoir.</p>
+
+        <form id="pronounExercise">
+            <div id="sentences-container">
+                </div>
+            <button type="submit" id="submitBtn">Vérifier les réponses</button>
+            <button type="button" id="checkAnswersBtn" class="check-answers-button">Voir les corrections</button>
+            <button type="button" id="resetBtn" class="reset-button hidden">Réinitialiser l'exercice</button>
+        </form>
+
+        <div id="scoreDisplay" class="score hidden"></div>
+    </div>
+    
+    <section>
+        <h2>Navigation</h2>
+        <div id="exercices">
+          <a href="index.html">Leçon</a>
+            <a href="exercice 1.html">Exercice 1</a>
+            <a href="exercice 2.html">Exercice 2</a>
+            <a href="exercice 3.html">Exercice 3</a>
+            <a href="exercice 4.html">Exercice 4</a>
+        </div>
+    </section>
+
+    <script>
+        const sentencesData = [
+            {
+                audio: "audio/phrase1.mp3",
+                correct: "J'ai lu le livre qui est sur la table.",
+                type: "qui"
+            },
+            {
+                audio: "audio/phrase2.mp3",
+                correct: "Voilà la voiture que j'ai achetée hier.",
+                type: "que"
+            },
+            {
+                audio: "audio/phrase3.mp3",
+                correct: "La personne qui t'a appelé est ma sœur.",
+                type: "qui"
+            },
+            {
+                audio: "audio/phrase4.mp3",
+                correct: "C'est le film que nous avons vu ensemble.",
+                type: "que"
+            },
+            {
+                audio: "audio/phrase5.mp3",
+                correct: "Le chien qui aboie est très amical.",
+                type: "qui"
+            },
+            {
+                audio: "audio/phrase6.mp3",
+                correct: "Tu connais la chanson que j'écoute souvent ?",
+                type: "que"
+            },
+            {
+                audio: "audio/phrase7.mp3",
+                correct: "Les élèves qui ont réussi sont contents.",
+                type: "qui"
+            },
+            {
+                audio: "audio/phrase8.mp3",
+                correct: "Elle porte la robe que tu lui as offerte.",
+                type: "que"
+            },
+            {
+                audio: "audio/phrase9.mp3",
+                correct: "Mon ami qui habite à Paris vient me voir.",
+                type: "qui"
+            },
+            {
+                audio: "audio/phrase10.mp3",
+                correct: "J'ai trouvé les clés que j'avais perdues.",
+                type: "que"
+            }
+        ];
+
+        // Additional random words to act as distractors
+        const randomWords = [
+            "maison", "dormir", "parler", "arbre", "content", "rapidement",
+            "manger", "marcher", "oiseau", "lumière", "bleu", "grand",
+            "petit", "heureux", "triste", "chanter", "jouer", "nager",
+            "écrire", "lire", "chaud", "froid", "beau", "laid", "facile", "difficile"
+        ];
+
+        const sentencesContainer = document.getElementById('sentences-container');
+        const submitBtn = document.getElementById('submitBtn');
+        const checkAnswersBtn = document.getElementById('checkAnswersBtn');
+        const resetBtn = document.getElementById('resetBtn');
+        const scoreDisplay = document.getElementById('scoreDisplay');
+
+        let draggedItem = null;
+
+        // Function to shuffle an array
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+            return array;
+        }
+
+        // Function to render sentences for the exercise
+        function renderSentences() {
+            sentencesContainer.innerHTML = '';
+            sentencesData.forEach((sentence, index) => {
+                const sentenceItem = document.createElement('div');
+                sentenceItem.classList.add('sentence-item');
+                sentenceItem.dataset.index = index;
+
+                const label = document.createElement('label');
+                label.textContent = `Phrase ${index + 1}: Écoutez et reconstituez la phrase.`;
+                sentenceItem.appendChild(label);
+
+                const audioPlayer = document.createElement('audio');
+                audioPlayer.setAttribute('controls', '');
+                // Correctly references the audio in the main GitHub directory
+                audioPlayer.src = `./${sentence.audio}`; 
+                sentenceItem.appendChild(audioPlayer);
+
+                const wordBank = document.createElement('div');
+                wordBank.classList.add('word-bank');
+                wordBank.dataset.type = 'word-bank';
+
+                // Prepare words for the bank
+                // Remove punctuation and split, then filter out empty strings
+                let wordsInSentence = sentence.correct.replace(/[.,!?;:]/g, '').split(' ').filter(word => word.length > 0);
+
+                // Add 6 random words, ensuring uniqueness and not adding words already in the sentence
+                let currentRandomWords = [...randomWords];
+                let addedDistractors = 0;
+                while (addedDistractors < 6 && currentRandomWords.length > 0) {
+                    const randomIndex = Math.floor(Math.random() * currentRandomWords.length);
+                    const wordToAdd = currentRandomWords[randomIndex];
+                    
+                    // Only add if it's not already in the sentence words and not already added as a distractor
+                    if (!wordsInSentence.includes(wordToAdd.toLowerCase()) && !wordsInSentence.includes(wordToAdd.charAt(0).toUpperCase() + wordToAdd.slice(1))) {
+                        wordsInSentence.push(wordToAdd);
+                        addedDistractors++;
+                    }
+                    currentRandomWords.splice(randomIndex, 1); // Remove used word to prevent re-selection
+                }
+
+                const allWordsForBank = shuffleArray(wordsInSentence);
+
+                allWordsForBank.forEach(wordText => {
+                    const word = document.createElement('span');
+                    word.classList.add('word');
+                    word.setAttribute('draggable', 'true');
+                    word.textContent = wordText.trim();
+                    wordBank.appendChild(word);
+                });
+                sentenceItem.appendChild(wordBank);
+
+                const sentenceInput = document.createElement('div');
+                sentenceInput.classList.add('sentence-input');
+                sentenceInput.dataset.type = 'sentence-input';
+                sentenceInput.setAttribute('contenteditable', 'false');
+
+                sentenceItem.appendChild(sentenceInput);
+                sentencesContainer.appendChild(sentenceItem);
+            });
+            initializeDragAndDrop();
+        }
+
+        // Drag and Drop functionality
+        function initializeDragAndDrop() {
+            const draggables = document.querySelectorAll('.word');
+            const dropzones = document.querySelectorAll('.word-bank, .sentence-input');
+
+            draggables.forEach(draggable => {
+                draggable.addEventListener('dragstart', (e) => {
+                    draggedItem = e.target;
+                    // Using a timeout to hide the element after it's been picked up
+                    setTimeout(() => {
+                        e.target.classList.add('hidden');
+                    }, 0);
+                });
+
+                draggable.addEventListener('dragend', (e) => {
+                    // Show the element again after the drag ends
+                    if (draggedItem) { // Check if draggedItem is still valid (not dropped outside)
+                        draggedItem.classList.remove('hidden');
+                        draggedItem = null;
+                    }
+                });
+            });
+
+            dropzones.forEach(zone => {
+                zone.addEventListener('dragover', (e) => {
+                    e.preventDefault(); // Allow drop
+                    const afterElement = getDragAfterElement(zone, e.clientY);
+                    const currentWords = zone.querySelectorAll('.word:not(.hidden)');
+                    
+                    if (!draggedItem) return; // Prevent errors if no item is being dragged
+
+                    if (afterElement == null) {
+                        // If no specific element to insert after, append to the end
+                        // Only append if the dragged item is not already the last child or if the zone is empty
+                        if (!zone.contains(draggedItem) || (currentWords.length > 0 && currentWords[currentWords.length - 1] !== draggedItem)) {
+                            zone.appendChild(draggedItem);
+                        } else if (currentWords.length === 0) { // For an empty zone
+                             zone.appendChild(draggedItem);
+                        }
+                    } else {
+                        // Insert before the identified element
+                        if (!zone.contains(draggedItem) || (afterElement !== draggedItem && afterElement.previousSibling !== draggedItem)) {
+                             zone.insertBefore(draggedItem, afterElement);
+                        }
+                    }
+                });
+
+                zone.addEventListener('drop', (e) => {
+                    e.preventDefault();
+                    if (draggedItem) {
+                        draggedItem.classList.remove('hidden'); // Ensure it's visible on drop
+                        // The `dragover` event listener already handles the appending/inserting
+                    }
+                });
+            });
+        }
+
+        function getDragAfterElement(container, y) {
+            // Get all visible draggable elements in the container
+            const draggableElements = [...container.querySelectorAll('.word:not(.hidden)')];
+
+            return draggableElements.reduce((closest, child) => {
+                const box = child.getBoundingClientRect();
+                const offset = y - box.top - box.height / 2; // Distance from the center of the child
+                if (offset < 0 && offset > closest.offset) {
+                    return { offset: offset, element: child };
+                } else {
+                    return closest;
+                }
+            }, { offset: Number.NEGATIVE_INFINITY }).element;
+        }
+
+        // Submission and Marking
+        document.getElementById('pronounExercise').addEventListener('submit', function(event) {
+            event.preventDefault();
+            let score = 0;
+            const sentenceItems = document.querySelectorAll('.sentence-item');
+
+            sentenceItems.forEach((item, index) => {
+                const sentenceInput = item.querySelector('.sentence-input');
+                // Get text content of words in the sentence input and join them
+                const userAnswerWords = Array.from(sentenceInput.children).map(wordElement => wordElement.textContent.trim());
+                const userAnswer = userAnswerWords.join(' ');
+                const correctSentence = sentencesData[index].correct;
+
+                // Remove existing feedback before adding new one
+                let feedbackDiv = item.querySelector('.feedback');
+                if (feedbackDiv) {
+                    feedbackDiv.remove();
+                }
+                let correctionDiv = item.querySelector('.correction');
+                if (correctionDiv) {
+                    correctionDiv.remove();
+                }
+
+                feedbackDiv = document.createElement('div');
+                feedbackDiv.classList.add('feedback');
+
+                // Normalize strings for comparison (remove extra spaces, trim)
+                // For a more robust comparison, we'll remove punctuation from both user and correct answers for comparison
+                const normalizeString = (str) => str.replace(/\s+/g, ' ').replace(/[.,!?;:]/g, '').trim().toLowerCase();
+
+                if (normalizeString(userAnswer) === normalizeString(correctSentence)) {
+                    feedbackDiv.classList.add('correct');
+                    feedbackDiv.textContent = 'Correct!';
+                    score++;
+                } else {
+                    feedbackDiv.classList.add('incorrect');
+                    feedbackDiv.textContent = 'Incorrect.';
+
+                    correctionDiv = document.createElement('div');
+                    correctionDiv.classList.add('correction');
+                    correctionDiv.innerHTML = `Correction: <span style="font-weight: normal;">${correctSentence}</span>`;
+                    
+                    item.appendChild(correctionDiv); // Append correction div, it will be hidden by default
+                }
+                item.appendChild(feedbackDiv);
+            });
+
+            scoreDisplay.textContent = `Votre score : ${score} / ${sentencesData.length}`;
+            scoreDisplay.classList.remove('hidden');
+            submitBtn.classList.add('hidden');
+            checkAnswersBtn.classList.remove('hidden'); // Show check answers button
+            resetBtn.classList.remove('hidden');
+        });
+
+        // Event listener for "Voir les corrections" button
+        checkAnswersBtn.addEventListener('click', () => {
+            const sentenceItems = document.querySelectorAll('.sentence-item');
+            sentenceItems.forEach(item => {
+                const feedbackDiv = item.querySelector('.feedback');
+                if (feedbackDiv && feedbackDiv.classList.contains('incorrect')) {
+                    item.classList.add('show-correction'); // Adds class to display correction
+                }
+            });
+            checkAnswersBtn.classList.add('hidden'); // Hide after showing corrections
+        });
+
+        resetBtn.addEventListener('click', () => {
+            renderSentences(); // Re-render sentences to reset the state
+            scoreDisplay.classList.add('hidden');
+            submitBtn.classList.remove('hidden');
+            checkAnswersBtn.classList.add('hidden'); // Hide check answers button on reset
+            resetBtn.classList.add('hidden');
+            // Remove 'show-correction' class from all items on reset
+            document.querySelectorAll('.sentence-item').forEach(item => {
+                item.classList.remove('show-correction');
+                const correctionDiv = item.querySelector('.correction');
+                if (correctionDiv) correctionDiv.remove(); // Also remove the div itself if it exists
+            });
+            // Clear any existing feedback
+            document.querySelectorAll('.feedback').forEach(feedback => feedback.remove());
+        });
+
+        // Initial rendering of sentences when the page loads
+        document.addEventListener('DOMContentLoaded', renderSentences);
+    </script>
+
+</body>
+</html>
